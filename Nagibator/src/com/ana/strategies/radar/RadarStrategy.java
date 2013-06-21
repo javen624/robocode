@@ -1,15 +1,17 @@
 package com.ana.strategies.radar;
 
+import com.ana.strategies.Strategy;
 import robocode.AdvancedRobot;
 
 /**
  * Стратегия сканирования.
  */
-public abstract class RadarStrategy  {
-    AdvancedRobot robot;
 
-    public RadarStrategy(AdvancedRobot r){
-        this.robot = r;
+
+public abstract class RadarStrategy extends Strategy {
+    public RadarStrategy(AdvancedRobot robot){
+        super(robot);
     }
+
     public abstract void radarMovement();
 }
