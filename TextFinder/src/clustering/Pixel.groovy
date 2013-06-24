@@ -1,3 +1,4 @@
+package clustering
 /**
  * Created with IntelliJ IDEA.
  * User: chermashentsev
@@ -6,28 +7,16 @@
  * To change this template use File | Settings | File Templates.
  */
 class Pixel {
-    int x
-    int y
-    int red
-    int green
-    int blue
+    Integer x
+    Integer y
+    Integer red
+    Integer green
+    Integer blue
     static def equalsClosure
     final static BLACK_PIXEL = new Pixel(red: 0, green: 0, blue: 0)
 
 
-    static{
-        BLACK_PIXEL.metaClass.equals = {Object obj ->
-            Pixel p = (Pixel) obj
-            if (
-                    Math.abs(p.blue - blue) < 25 &&
-                    Math.abs(p.red - red) < 25 &&
-                    Math.abs(p.green - green) < 25
-            )
-                return true
-            else
-                return false
-        }
-    }
+
 
 
 
@@ -43,9 +32,13 @@ class Pixel {
     @Override
     boolean equals(Object obj) {
         Pixel p = (Pixel) obj
-        if (p.x == x && p.y == y)
+        if (
+                Math.abs(p.blue - this.blue) <  settings.Setting.COLOR_OFFSET &&
+                        Math.abs(p.red - this.red) < settings.Setting.COLOR_OFFSET &&
+                        Math.abs(p.green - this.green) < settings.Setting.COLOR_OFFSET
+        )
             return true
-        return false
-
+        else
+            return false
     }
 }

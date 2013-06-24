@@ -1,3 +1,7 @@
+package clustering
+
+import settings.Closures
+
 /**
  * Created with IntelliJ IDEA.
  * User: chermashentsev
@@ -9,7 +13,7 @@ class Distance {
     Point to
     double distance
 
-    public Distance (Point from, Point to, distMethod = {f, t -> return Math.sqrt(Math.pow(f.x-t.x, 2) + Math.pow(f.y - t.y, 2))}){
+    public Distance (Point from, Point to, distMethod = Closures.defaultDistanceMethod){
         this.to = to
         distance = distMethod(from, to)
     }

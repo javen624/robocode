@@ -1,3 +1,4 @@
+package clustering
 /**
  * Created with IntelliJ IDEA.
  * User: Пекарь
