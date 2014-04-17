@@ -2,11 +2,8 @@ package com.ana;
 
 import com.ana.strategies.gun.DestroyerGunStrategy;
 import com.ana.strategies.gun.GunStrategy;
-import com.ana.strategies.gun.NatashaGunStrategy;
-import com.ana.strategies.gun.WallsKillerStrategy;
 import com.ana.strategies.movement.LinkedWaveMovement;
 import com.ana.strategies.movement.MovementStrategy;
-import com.ana.strategies.movement.RoundMovement;
 import com.ana.strategies.radar.RadarStrategy;
 import com.ana.strategies.radar.SmartRadarStrategy;
 import robocode.AdvancedRobot;
@@ -30,8 +27,8 @@ public class Nagibator extends AdvancedRobot {
 
     public Nagibator(){
         radarStrategy = new SmartRadarStrategy(this);
-        gunStrategy = /*new DestroyerGunStrategy(this);*/new NatashaGunStrategy(this);
-        movementStrategy = new RoundMovement(this);//new MinimumRiscMovement(this);
+        gunStrategy = new DestroyerGunStrategy(this);
+        movementStrategy = new LinkedWaveMovement(this);
     }
 
     public void run() {
@@ -46,7 +43,7 @@ public class Nagibator extends AdvancedRobot {
         if (radarStrategy instanceof SmartRadarStrategy)
             ((SmartRadarStrategy) radarStrategy).getInfo(e);
         Enemy enemy = MathHelper.getClosestEnemy();
-        if(enemy.IsWalls) gunStrategy=new WallsKillerStrategy(this);
+        if(enemy.IsWalls) gunStrategy=new DestroyerGunStrategy(this);
         else gunStrategy=new DestroyerGunStrategy(this);
         gunStrategy.shot();
         //gunStrategy.onScannedRobot(e);

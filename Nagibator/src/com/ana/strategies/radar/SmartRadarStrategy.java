@@ -35,9 +35,7 @@ public class SmartRadarStrategy extends RadarStrategy {
         for (int i = 0; i < MathHelper.enemies.size(); i++)
             if (MathHelper.enemies.get(i).isUpdated)
                 updated++;
-        if (updated == robot.getOthers())
-            return true;
-        else return false;
+        return updated == robot.getOthers();
 
     }
 
@@ -45,7 +43,7 @@ public class SmartRadarStrategy extends RadarStrategy {
         if (MathHelper.enemies.isEmpty())
             return -1;      //Вернуть -1 если массив пуст
         for (int i = 0; i < MathHelper.enemies.size(); i++)
-            if (MathHelper.enemies.get(i).name == e.getName())
+            if (MathHelper.enemies.get(i).name.equals(e.getName()))
                 return i; //Вернуть индекс врага, которого нужно обновить
         return -1;      //Вернуть -1, если не найден
 
